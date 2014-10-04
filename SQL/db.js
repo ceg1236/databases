@@ -25,32 +25,27 @@ exports.findAllMessages = function(cb){
   //mysql.query(//// , parameters] , callback )
   // return all messages from messages table
   var msgs = 'select message from messages';
-  dbConnection.query(msgs, cb); // ?
+  dbConnection.query(msgs, function(e,d) {
+    cb(e,d);
+  }); //
 
 };
 
 exports.findUser = function(username, cb){
-  console.log('findUser username: ' , username);
-  var user = 'select * from messages where username = ' + "'" + username + "'";
-  dbConnection.query(user, function(e, d) {
-    console.log('data: ', d);
-    cb(e,d);
-  });
 
-  // what exactly do we return here?
-  // how do we handle this cb() -- what is passed?
-  // messages?
+  var user = 'select * from messages where username = ?;';
+  dbConnection.query(user, [ username ] , cb);
 };
 
 exports.saveUser = function(username, cb){
-  // we want to insert this user to the username collumn
-  console.log('saveUser: ', username);
 
-  var user = 'insert into messages(username) values('+"'"+username+"'"+');';
-  dbConnection.query(user, cb);
+  var user = 'insert into messages(username) values(?);';
+  dbConnection.query(user, [username], function(e,d) {
+    cb(e,d);
+  });
 };
 
 exports.saveMessage = function(message, userid, roomname, cb){
-  var querystr = 'insert into messages(message, id, roomname) values('+message+','+userid+','+ roomname+');';
-  dbConnection.query(querystr, cb);
+  var queryString= 'insert into messages(message, id, roomname) values(?, ?, ?);';
+  dbConnection.query(queryString,[ message, userid, roomname ], cb);
 };

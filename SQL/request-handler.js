@@ -28,8 +28,9 @@ exports.postMessage = function(req, res) {
   parseData(req, function(_, msg) {
     console.log('-=-= parsed msg: ', msg);
       message = msg;
-      findUser(msg.username, function (err, results) {
+      findUser(message.username, function (err, results) {
         // no results/0 results
+        console.log('post-parse reslts: ', results);
         if (!results || !results.length) {
           // create the user, then post the message
           saveUser(message.username, resultsCallback);

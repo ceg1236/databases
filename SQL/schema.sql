@@ -9,6 +9,8 @@ CREATE TABLE messages (
   /* Contains username, userID, rmname, and messageContent */
   id integer NOT NULL AUTO_INCREMENT,
   username varchar(15),
+  /*this is where we should create an id for each message*/
+
   roomname varchar(10),
   message varchar(140),
   PRIMARY KEY(id)

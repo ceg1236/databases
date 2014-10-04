@@ -2,12 +2,27 @@ CREATE DATABASE chat;
 
 USE chat;
 
+
+
 CREATE TABLE messages (
   /* Describe your table here.*/
+  /* Contains username, userID, rmname, and messageContent */
+  id integer NULL AUTO_INCREMENT DEFAULT NULL,
+  username varchar(15),
+  roomname varchar(10),
+  message varchar(140),
+  PRIMARY KEY(id)
+
 );
 
 /* Create other tables and define schemas for them here! */
-
+CREATE TABLE user (
+  id INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  username VARCHAR(15),
+  messages VARCHAR(140),
+  roomname VARCHAR(15),
+  PRIMARY KEY (id)
+);
 
 
 
@@ -18,3 +33,11 @@ CREATE TABLE messages (
 
 
 
+/* data from chatter box
+var data = {
+  friends: [],
+  rooms: [],
+  currentRoom: 'General',
+  chats: {}
+};
+*/

@@ -22,15 +22,23 @@ dbConnection.connect();
 
 
 exports.findAllMessages = function(cb){
+  //mysql.query(//// , parameters] , callback )
+
 
 };
 
 exports.findUser = function(username, cb){
+  console.log('this is not working');
+  var user = ''
 };
 
 exports.saveUser = function(username, cb){
+
 };
 
 exports.saveMessage = function(message, userid, roomname, cb){
-
+  var querystr = 'insert into messages(message, username, roomname)sp values(message, userid, roomname)';
+  mysql.query(querystr, function() {
+    return cb();
+  });
 };

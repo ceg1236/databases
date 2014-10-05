@@ -24,15 +24,15 @@ exports.postMessage = function(req, res) {
         serverHelpers.sendResponse(res, message);
       });
   };
-
   parseData(req, function(_, msg) {
     console.log('-=-= parsed msg: ', msg);
       message = msg;
       findUser(message.username, function (err, results) {
         // no results/0 results
         console.log('post-parse reslts: ', results);
-        if (!results || !results.length) {
+        if ( !results.indexOf(message.username)) {
           // create the user, then post the message
+          console.log('usr name', message.username);
           saveUser(message.username, resultsCallback);
         } else {
           // user exists, post the message to this user

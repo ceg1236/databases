@@ -32,9 +32,9 @@ exports.findAllMessages = function(cb){
 };
 
 exports.findUser = function(username, cb){
-
+  console.log('find user', username);
   var user = 'select * from messages where username = ?;';
-  dbConnection.query(user, [ username ] , cb);
+  dbConnection.query(user, username, cb);
 };
 
 exports.saveUser = function(username, cb){
